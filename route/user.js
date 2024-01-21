@@ -2,7 +2,7 @@
 import express from 'express'
 
 // import controllers
-import { getUser, createUser, updateUser, deleteUser } from '../controllers/user.js'
+import { getUser, updateUser, deleteUser } from '../controllers/user.js'
 
 const router = express.Router()
 
@@ -29,19 +29,20 @@ router.get('/users', async (req, res) => {
 
 })
 
-router.post('/users', async (req, res) => {
-    try{
-        // console.log(req)
-        const newUser = await createUser(req.body)
-        res.status(200).json({
-            newUser: `${newUser}`})
-    }
-    catch(error){
-        res.status(500).send({
-            createUser: `${error}`
-        })
-    }
-})
+//Remove this when auth router are done.
+// router.post('/users', async (req, res) => {
+//     try{
+//         // console.log(req)
+//         const newUser = await createUser(req.body)
+//         res.status(200).json({
+//             newUser: `${newUser}`})
+//     }
+//     catch(error){
+//         res.status(500).send({
+//             createUser: `${error}`
+//         })
+//     }
+// })
 
 router.put('/users/:id', async(req, res) =>{
     try{

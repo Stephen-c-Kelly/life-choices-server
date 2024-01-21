@@ -16,15 +16,15 @@ const getUser = () => {
 
 
 // Create a user
-const createUser = (user) => {
-    return User.insertMany(user)
-    .then(response => {
-        return response
-    })
-    .catch(error => {
-        throw error
-    })
-}
+// const createUser = (user) => {
+//     return User.create(user)
+//     .then(response => {
+//         return response
+//     })
+//     .catch(error => {
+//         throw error
+//     })
+// }
 
 // Update a user
 const updateUser = (id, updateInfo) =>{
@@ -50,7 +50,7 @@ const deleteUser = (id) =>{
 
 export { 
     getUser,
-    createUser,
+    // createUser,
     updateUser,
     deleteUser
 
