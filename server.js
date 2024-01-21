@@ -7,6 +7,9 @@ import  express  from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 
+//import routers
+import userRouter from './route/user.js'
+
 //use middleware
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -17,9 +20,8 @@ app.use(morgan('tiny'))// log the request for debugging
 
 
 // Set routes
-app.use('/', function(){
-    console.log(`hello`)
-})
+app.use('/', userRouter)
+
 
 app.use(cors({
     origin: '' // Allow only your frontend to access
