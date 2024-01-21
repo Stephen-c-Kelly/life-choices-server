@@ -29,14 +29,14 @@ const getUser = () => {
 
 // Update a user. If the password is to be changeds, password will be encrypted.
 const updateUser = async (id, updateInfo) =>{
-    console.log('BEFORE',updateInfo.password)
+    // console.log('BEFORE',updateInfo.password)
     //encrypt password.
     return bcrypt.hash(updateInfo.password, 10)
     .then(password => {
         updateInfo.password = password
         return User.findByIdAndUpdate(id, updateInfo, {new: true})
         .then(response =>{
-            console.log(response.password)
+            // console.log(response.password)
             return response
         })
         .catch(error => {

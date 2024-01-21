@@ -27,8 +27,8 @@ async function signUp(req, res){
                 req.body.profileId = profile._id
                 User.create(req.body)
                 .then( user => {
-                    const token = createJWT(user)
-                    res.status(200).send({ token })
+                    // const token = createJWT(user)
+                    res.status(200).send({ user })
                 })
                 .catch( error => {
                     Profile.findByIdAndDelete(profile._id)

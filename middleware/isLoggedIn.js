@@ -7,7 +7,7 @@ const SECRET = process.env.SECRET
 // Get the token from authorization, verify the token.
 const isLoggedIn = (req, res, next) => {
     let token = req.get('Authorization') || req.query.token ||req.body.token
-    // console.log('isloggedIn', token)
+    console.log('isloggedIn', token)
     if (token) {
         token = token.replace('Bearer ', '')
         const payload = jwt.verify(token, SECRET)
