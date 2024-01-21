@@ -15,7 +15,7 @@ router.get('/', function(req, res){
 })
 
 // Get all users
-router.get('/users', async (req, res) => {
+router.get('/users', isLoggedIn, async (req, res) => {
     try{
         const users = await getUser()
         res.status(200).send({users:users})
