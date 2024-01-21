@@ -49,6 +49,8 @@ router.put('/users/:id', isLoggedIn, async(req, res) =>{
     try{
         const id = req.params.id
         const loggedInUser = req.user.user
+        // console.log('put id', id)
+        // console.log('loggedInUser id', loggedInUser._id)
         if ( id === loggedInUser._id){
             const updateUserInfo = await updateUser(id, req.body)
             res.status(200).send({

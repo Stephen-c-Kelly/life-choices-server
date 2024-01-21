@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import User from '../model/user.js'
 import Profile from "../model/profile.js";
-import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
 
 // Get all users
@@ -27,15 +27,23 @@ const getUser = () => {
 //     })
 // }
 
-// Update a user
-const updateUser = (id, updateInfo) =>{
-    return User.findByIdAndUpdate(id, updateInfo, {new: true})
-    .then(response =>{
-        return response
-    })
-    .catch(error => {
-        throw error
-    })
+// Update a user. If the password is to be changeds, password will be encrypted.
+const updateUser = async (id, updateInfo) =>{
+    console.log('BEFORE',updateInfo.password)
+    //encrypt password.
+    return bcrypt.hash(updateInfo.password, 10)
+    .then(password => {
+        updateInfo.password = password
+        return User.findByIdAndUpdate(id, updateInfo, {new: true})
+        .then(response =>{
+            console.log(response.password)
+            return response
+        })
+        .catch(error => {
+            throw error
+        })
+        })
+
 }
 
 // Delete a user
