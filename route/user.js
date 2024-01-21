@@ -81,7 +81,7 @@ router.delete('/users/:id', isLoggedIn, async (req, res) => {
         // console.log('token', token)
         // console.log('delete req.user',loggedInUser)
         // console.log('req.body._id',loggedInUser._id)
-        
+
         //check if loggedIn user is permitted to delete this user under :id.
         if (id === loggedInUser._id){
             const deletedUser = await deleteUser(id)
