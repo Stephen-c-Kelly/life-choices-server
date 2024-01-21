@@ -3,6 +3,7 @@ import express from 'express'
 
 // import controllers
 import { getUser, updateUser, deleteUser } from '../controllers/user.js'
+import isLoggedIn from '../middleware/isLoggedIn.js'
 
 const router = express.Router()
 
@@ -44,14 +45,21 @@ router.get('/users', async (req, res) => {
 //     }
 // })
 
-router.put('/users/:id', async(req, res) =>{
+router.put('/users/:id', isLoggedIn, async(req, res) =>{
     try{
         const id = req.params.id
-        // console.log(id)
-        const updateUserInfo = await updateUser(id, req.body)
-        res.status(200).send({
-            updateUserInfo:`${updateUserInfo}`
-        })
+        const loggedInUser = req.user.user
+        if ( id === loggedInUser._id){
+            const updateUserInfo = await updateUser(id, req.body)
+            res.status(200).send({
+                updateUserInfo:`${updateUserInfo}`
+            })
+        }else{
+            res.status(500).send({
+                UpdateUserError:`You have no permit to delete this user`
+            })
+        }
+
     }
     catch(error){
         res.status(500).send({
@@ -61,13 +69,23 @@ router.put('/users/:id', async(req, res) =>{
 
 })
 
-router.delete('/users/:id', async (req, res) => {
+router.delete('/users/:id', isLoggedIn, async (req, res) => {
     try{
         const id = req.params.id
-        const deletedUser = await deleteUser(id)
-        res.status(200).send({
+        const loggedInUser = req.user.user
+        // console.log('delete req.user',loggedInUser)
+        // console.log('req.body._id',loggedInUser._id)
+        //check if loggedIn user is permitted to delete this user under :id.
+        if (id === loggedInUser._id){
+            const deletedUser = await deleteUser(id)
+            res.status(200).send({
             deleteduser:`${deletedUser}`
         })
+        }else{
+            res.status(500).send({
+                deleteUserError:`You have no permit to delete this user`
+            })
+        }
     }
     catch(error){
         res.status(500).send({

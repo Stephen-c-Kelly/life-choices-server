@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import User from '../model/user.js'
+import Profile from "../model/profile.js";
 import jwt from 'jsonwebtoken'
 
 
@@ -41,6 +42,7 @@ const updateUser = (id, updateInfo) =>{
 const deleteUser = (id) =>{
     return User.findByIdAndDelete(id)
     .then (response => {
+        Profile.findByIdAndDelete(response.profileId)
         return response
     })
     .catch(error => {
