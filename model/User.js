@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
     password: {type: String, required: true},
     postId: [{type: mongoose.Schema.Types.ObjectId, ref:'Post'}], //multiple posts
     friendlist: [{type: String}], // An array of usernames
-
+    
 },
 {timestamps: true})
 
