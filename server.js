@@ -12,6 +12,7 @@ import userRouter from './route/user.js'
 import authRouter from './route/auth.js'
 import profileRouter from './route/profile.js'
 import commentRouter from './route/comment.js'
+import postRouter from './route/post.js'
 
 //use middleware
 const app = express()
@@ -27,6 +28,7 @@ app.use('/', userRouter)
 app.use('/', authRouter)
 app.use('/', profileRouter)
 app.use('/', commentRouter)
+app.use('/', postRouter)
 
 
 app.use(cors({
