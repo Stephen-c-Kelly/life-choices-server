@@ -5,6 +5,7 @@ import express from 'express'
 import { getProfiles, updateProfile, deleteProfile } from '../controllers/profile.js'
 import User from '../model/user.js'
 import isLoggedIn from '../middleware/isLoggedIn.js'
+import { updateUser } from '../controllers/user.js'
 
 const router = express.Router()
 
@@ -55,13 +56,17 @@ router.delete('/profiles/:id', isLoggedIn, async (req, res) => {
         const loggedInUser = req.user.user
         console.log( loggedInUser)
         if (id === loggedInUser.profileId){
-            loggedInUser.profileId = ''
+            const updatedUserData = {
+                ...loggedInUser,
+                profileId: null, // Setting profileId to empty
+            }
+            const updatedUser = await updateUser(loggedInUser._id, updatedUserData)
+            console.log(updatedUser)
             const deletedProfile = await deleteProfile(id)
             res.status(200).send({
                 deletedProfileInfo:`${deletedProfile}`,
-                userUpdated: loggedInUser
+                userUpdated: updatedUserData
             })
-            
         }else{
             res.status(500).send({
                 deletedProfileError:`You have no permit to update this profile or profile not found`
