@@ -24,6 +24,7 @@ async function signUp(req, res){
           }else{
             Profile.create(req.body)
             .then(profile => {
+                // console.log('createprofile',profile)
                 req.body.profileId = profile._id
                 User.create(req.body)
                 .then( user => {

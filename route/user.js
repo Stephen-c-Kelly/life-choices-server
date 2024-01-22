@@ -59,7 +59,7 @@ router.put('/users/:id', isLoggedIn, async(req, res) =>{
             })
         }else{
             res.status(500).send({
-                UpdateUserError:`You have no permit to update this user`
+                UpdateUserError:`You have no permit to update this user or user not found`
             })
         }
 
