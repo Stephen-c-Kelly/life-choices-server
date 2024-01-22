@@ -7,10 +7,9 @@ const userSchema = mongoose.Schema({
     username:{type: String, required: true, unique:true, match: /^[A-Za-z0-9]+$/},
     email: {type: String, required: true, unique: true, match: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/},
     password: {type: String, required: true},
-    postId: [{type: mongoose.Schema.Types.ObjectId, ref:'Post'}], //multiple posts
     profileId:{type:mongoose.Schema.Types.ObjectId, ref: 'Profile'},
-    friendlist: [{type: String}], // An array of usernames
-    
+
+
 },
 {timestamps: true})
 
