@@ -9,6 +9,7 @@ import morgan from 'morgan'
 
 //import routers
 import userRouter from './route/user.js'
+import authRouter from './route/auth.js'
 
 //use middleware
 const app = express()
@@ -21,6 +22,7 @@ app.use(morgan('tiny'))// log the request for debugging
 
 // Set routes
 app.use('/', userRouter)
+app.use('/', authRouter)
 
 
 app.use(cors({
