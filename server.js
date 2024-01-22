@@ -11,6 +11,7 @@ import morgan from 'morgan'
 import userRouter from './route/user.js'
 import authRouter from './route/auth.js'
 import profileRouter from './route/profile.js'
+import commentRouter from './route/comment.js'
 
 //use middleware
 const app = express()
@@ -25,6 +26,7 @@ app.use(morgan('tiny'))// log the request for debugging
 app.use('/', userRouter)
 app.use('/', authRouter)
 app.use('/', profileRouter)
+app.use('/', commentRouter)
 
 
 app.use(cors({
