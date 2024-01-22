@@ -14,6 +14,46 @@ function createJWT(user){
     )
 }
 
+// async function signUp(req, res){
+//     User.findOne({email:req.body.email})
+//     .then(user => {
+//         if (user) {
+//             throw new Error('Account already exists')
+//         }else if (!process.env.SECRET){
+//             throw new Error('no SECRET in .env file')
+//           }else{
+//             User.create(req.body)
+//             .then(user => {
+//                 // console.log('createprofile',profile)
+                
+//                 Profile.create({userId: user._id})
+//                 .then( profile => {
+//                     // const token = createJWT(user)
+//                     user.profileId = profile._id
+//                     user.save()
+//                     res.status(200).send({ user, profile })
+//                 })
+//                 .catch( error => {
+//                     User.findByIdAndDelete(user._id)
+//                     res.status(500).send({
+//                         profileCreateError: `${error}`
+//                     })
+
+//                 })
+//             })
+//             .catch(error => {
+//                 res.status(500).send({
+//                     userCreateError: `${error}`
+//                 })
+//             })
+//           }
+//     })
+//     .catch(error => {
+//         res.status(500).json({signUpError: error.message})
+//     })
+    
+// }
+
 async function signUp(req, res){
     User.findOne({email:req.body.email})
     .then(user => {
@@ -46,11 +86,13 @@ async function signUp(req, res){
             })
           }
     })
-    .catch(error => {
-        res.status(500).json({signUpError: error.message})
+    .catch(err => {
+        res.status(500).json({signUpError: err.message})
     })
     
 }
+
+
 
 function signIn(req, res){
     User.findOne({email: req.body.email})
