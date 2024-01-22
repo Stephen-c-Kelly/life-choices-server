@@ -12,9 +12,9 @@ router.get('/comments', isLoggedIn, async (req, res) => {
             allComments:`${comments}`
         })
     }
-    catch(err){
+    catch(error){
         res.status(500).send({
-            getCommentsError: `${err}`
+            getCommentsError: `${error}`
         })
     }
 })
@@ -26,9 +26,9 @@ router.post('/comments' , isLoggedIn, async(req, res) => {
             newComment: `${comment}`
         })
     }
-    catch(err){
+    catch(error){
         res.status(500).send({
-            createCommentError: `${err}`
+            createCommentError: `${error}`
         })
     }
 
@@ -42,9 +42,9 @@ router.put('/comments/:id', isLoggedIn, async(req, res) => {
             updateComment: `${updatedComment}`
         })
     }
-    catch(err){
+    catch(error){
         res.status(500).send({
-            updateCommentError: `${err}`
+            updateCommentError: `${error}`
         })
     }
 })
@@ -57,9 +57,9 @@ router.delete('/comments/:id', isLoggedIn, async (req, res) => {
             deleteComment: `${deletedComment}`
         })
     }
-    catch(err){
+    catch(error){
         res.status(500).send({
-            deleteCommentError: `${err}`
+            deleteCommentError: `${error}`
         })
     }
 })

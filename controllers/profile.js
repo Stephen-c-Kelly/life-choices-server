@@ -18,8 +18,8 @@ const updateProfile = (id, updateInfo) => {
     .then( update => {
         return update
     })
-    .catch(err => {
-        throw err
+    .catch(error => {
+        throw error
     })
 }
 
@@ -30,8 +30,8 @@ const deleteProfile = (id) => {
     .then( profile => {
         return profile
     })
-    .catch(err => {
-        throw err
+    .catch(error => {
+        throw error
     })
 }
 

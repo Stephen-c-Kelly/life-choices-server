@@ -6,8 +6,8 @@ const getComments = () => {
     .then( comment =>{
         return comment
     })
-    .catch(err => {
-        throw err
+    .catch(error => {
+        throw error
     })
 }
 
@@ -36,8 +36,8 @@ const updateComment = (id, edit) => {
     .then( update => {
         return update
     })
-    .catch(err => {
-        throw err
+    .catch(error => {
+        throw error
     })
 }
 
@@ -56,8 +56,8 @@ const deleteComment = ( commentId ) => {
         // })
         return deletedComment
     })
-    .catch(err => {
-        throw err
+    .catch(error => {
+        throw error
     })
 
 }

@@ -46,8 +46,8 @@ async function signUp(req, res){
             })
           }
     })
-    .catch(err => {
-        res.status(500).json({signUpError: err.message})
+    .catch(error => {
+        res.status(500).json({signUpError: error.message})
     })
     
 }
@@ -56,12 +56,13 @@ function signIn(req, res){
     User.findOne({email: req.body.email})
     .then( user => {
         if (!user) return res.status(400).send({error:'User not found'})
-        user.comparePassword(req.body.password, (err, isMatch) => {
+        user.comparePassword(req.body.password, (error, isMatch) => {
             if (isMatch){
                 const token = createJWT(user)
                 res.json({token})
+
             } else {
-                res.status(401).json({ err: 'Incorrect password' })
+                res.status(401).json({ error: 'Incorrect password' })
               }
         })
     })
