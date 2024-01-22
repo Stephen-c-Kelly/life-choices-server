@@ -17,9 +17,9 @@ router.get('/profiles', isLoggedIn, async (req, res) => {
             allProfiles: `${profiles}`
         })
     }
-    catch(err){
+    catch(error){
         res.status(500).send({
-            getProfilesError: `${err}`
+            getProfilesError: `${error}`
         })
     }
     
@@ -41,9 +41,9 @@ router.put('/profiles/:id', isLoggedIn, async (req, res) => {
             })
         }
     }
-    catch(err){
+    catch(error){
         res.status(500).send({
-            updateProfileError: `${err}`
+            updateProfileError: `${error}`
         })
     }
     
@@ -73,9 +73,9 @@ router.delete('/profiles/:id', isLoggedIn, async (req, res) => {
             })
         }
     }
-    catch(err){
+    catch(error){
         res.status(500).send({
-            deleteProfileError: `${err}`
+            deleteProfileError: `${error}`
         })
     }
 })
