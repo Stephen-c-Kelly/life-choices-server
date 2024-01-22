@@ -44,16 +44,16 @@ const updateComment = (id, edit) => {
 const deleteComment = ( commentId ) => {
     return Comment.findByIdAndDelete(commentId)
     .then( deletedComment => {
-        Post.updateMany(
-            { commentId: { $in: [commentId] } },
-            { $pull: { commentId: commentId } }
-        )
-        .then( updatedpost => {
-            return updatedpost
-        })
-        .catch(err => {
-            throw err
-        })
+        // Post.updateMany(
+        //     { commentId: { $in: [commentId] } },
+        //     { $pull: { commentId: commentId } }
+        // )
+        // .then( updatedpost => {
+        //     return updatedpost
+        // })
+        // .catch(err => {
+        //     throw err
+        // })
         return deletedComment
     })
     .catch(err => {
