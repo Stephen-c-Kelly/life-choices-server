@@ -7,10 +7,20 @@ const createPost = (req) => {
     })
 }
 
-const getPost = () => {
+const getPosts = () => {
     return Post.find({})
     .then( posts => {
         return posts
+    })
+    .catch(error => {
+        throw error
+    })
+}
+
+const getSinglePost = (id) => {
+    return Post.findOne({_id:id})
+    .then( post => {
+        return post
     })
     .catch(error => {
         throw error
@@ -40,7 +50,8 @@ const deletePost = (id) => {
 
 
 export {
-    getPost,
+    getPosts,
+    getSinglePost,
     deletePost, 
     createPost,
     updatePost

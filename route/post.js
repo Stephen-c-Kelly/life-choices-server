@@ -1,4 +1,4 @@
-import { getPost, createPost, updatePost, deletePost } from "../controllers/post.js";
+import { getPosts, createPost, updatePost, deletePost, getSinglePost } from "../controllers/post.js";
 import isLoggedIn from "../middleware/isLoggedIn.js";
 
 import express from "express";
@@ -10,7 +10,7 @@ const router = express.Router()
 
 router.get('/posts', isLoggedIn, async (req, res) => {
     try{
-        const allPosts = await getPost()
+        const allPosts = await getPosts()
         res.status(200).json({
             allPosts
         })
@@ -22,6 +22,20 @@ router.get('/posts', isLoggedIn, async (req, res) => {
     }
 })
 
+router.get('/posts/:id', isLoggedIn, async (req, res) => {
+    try{
+        const id = req.params.id
+        const post = await getSinglePost(id)
+        res.status(200).json({
+            post
+        })
+    }
+    catch(error){
+        res.status(500).send({
+            getPostError: `${error}`
+        })
+    }
+})
 
 router.post('/posts', isLoggedIn, async (req, res) => {
     try{
