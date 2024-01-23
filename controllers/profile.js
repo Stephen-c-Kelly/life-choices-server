@@ -12,6 +12,26 @@ const getProfiles = () => {
     })
 }
 
+const getProfileByUsername = (username) =>{
+    return Profile.find({username: username})
+    .then(profile => {
+        return profile
+    })
+    .catch(error => {
+        throw error
+    })
+}
+
+// we wrote this and realized we might want to search by username, not ID.  But there might be some reason why we want to keep this so we'll leave it here and in route/profile
+const getProfileById = (id) =>{
+    return Profile.findById(id)
+    .then(profiles => {
+        return profiles
+    })
+    .catch(error => {
+        throw error
+    })
+}
 
 const updateProfile = (id, updateInfo) => {
     return Profile.findByIdAndUpdate(id, updateInfo, {new: true})
@@ -38,5 +58,6 @@ const deleteProfile = (id) => {
 export { 
     getProfiles,
     updateProfile,
-    deleteProfile
+    deleteProfile,
+    getProfileByUsername
 }
