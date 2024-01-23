@@ -12,6 +12,15 @@ const getProfiles = () => {
     })
 }
 
+const getSingleProfile = (id) =>{
+    return Profile.findById(id)
+    .then(profiles => {
+        return profiles
+    })
+    .catch(error => {
+        throw error
+    })
+}
 
 const updateProfile = (id, updateInfo) => {
     return Profile.findByIdAndUpdate(id, updateInfo, {new: true})
@@ -38,5 +47,6 @@ const deleteProfile = (id) => {
 export { 
     getProfiles,
     updateProfile,
-    deleteProfile
+    deleteProfile,
+    getSingleProfile
 }
