@@ -10,22 +10,21 @@ const isLoggedIn = (req, res, next) => {
     // console.log('isloggedIn', token)
     if (token) {
         token = token.replace('Bearer ', '')
-        const payload = jwt.verify(token, SECRET)
-        if (payload){
-            req.user = payload
-            // console.log('isloggedIn req.user', req.user)
-            next()
-        }else{
-            res.status(400).json({
-                message: "Token verification failed"
-            })
-        }
+        jwt.verify(token , SECRET, (err, decoded) =>{
+            if(err){
+                return next(err)
+            }
+            req.user = decoded.user
 
-    }else{
-        res.status(400).json({
-            message: "malformed auth header"
+            if(req.user){
+                return next()
+            } else{
+                return res.status(401).json({msg: 'NotAuthorized'})
+            }
         })
-    }    
+    }else{
+        return res.status(401).json({msg: 'Not Authorized'})
+    }
 }
 
-export default isLoggedIn
+export default isLoggedIn   
