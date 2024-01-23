@@ -2,7 +2,7 @@
 import express from 'express'
 
 // import controllers
-import { getProfiles, updateProfile, deleteProfile, getSingleProfile } from '../controllers/profile.js'
+import { getProfiles, updateProfile, deleteProfile, getProfileByUsername } from '../controllers/profile.js'
 import User from '../model/user.js'
 import isLoggedIn from '../middleware/isLoggedIn.js'
 import { updateUser } from '../controllers/user.js'
@@ -25,18 +25,21 @@ router.get('/profiles', isLoggedIn, async (req, res) => {
     
 })
 
-router.get('/profiles/:id', isLoggedIn, async (req, res) => {
+router.get('/profiles/:username', isLoggedIn, async (req, res) => {
     try{
-        const id = req.params.id
-        console.log(`get profile by id req is`, req.user.user.profileId)
-        const profile = await getSingleProfile(id)
-        if (id === profile.id){
+        const username = req.params.username
+        // console.log(`get profile by username req is`, req.user.user.username)
+        console.log(`username from the url is`,username)
+        const profile = await getProfileByUsername(username)
+        console.log(`profile is `,profile)
+        
+        if (username === profile[0].username){
             res.status(200).send({
                 profile:`${profile}`
             })
         }else{
             res.status(500).send({
-                updateProfileError:`profile not found`
+                updateProfileError:`searching by that username, a profile is not found`
             })
         }
     }
@@ -47,6 +50,30 @@ router.get('/profiles/:id', isLoggedIn, async (req, res) => {
     }
     
 })
+
+// commented out, see note in controllers/porofile.js
+// router.get('/profiles/:id', isLoggedIn, async (req, res) => {
+//     try{
+//         const id = req.params.id
+//         console.log(`get profile by id req is`, req.user.user.profileId)
+//         const profile = await getProfileById(id)
+//         if (id === profile.id){
+//             res.status(200).send({
+//                 profile:`${profile}`
+//             })
+//         }else{
+//             res.status(500).send({
+//                 updateProfileError:`profile not found`
+//             })
+//         }
+//     }
+//     catch(error){
+//         res.status(500).send({
+//             updateProfileError: `${error}`
+//         })
+//     }
+    
+// })
 
 
 router.put('/profiles/:id', isLoggedIn, async (req, res) => {
