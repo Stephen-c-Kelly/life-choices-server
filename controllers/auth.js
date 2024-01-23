@@ -10,7 +10,7 @@ function createJWT(user){
     return jwt.sign(
         {user}, // data payload
         SECRET,
-        { expiresIn: '1h'}
+        { expiresIn: '24h'}
     )
 }
 
