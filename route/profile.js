@@ -14,7 +14,7 @@ router.get('/profiles', isLoggedIn, async (req, res) => {
     try{
         const profiles = await getProfiles()
         res.status(200).send({
-            allProfiles: `${profiles}`
+            profiles
         })
     }
     catch(error){
@@ -35,7 +35,7 @@ router.get('/profiles/:username', isLoggedIn, async (req, res) => {
         
         if (username === profile[0].username){
             res.status(200).send({
-                profile:`${profile}`
+                profile
             })
         }else{
             res.status(500).send({
