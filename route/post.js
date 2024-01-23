@@ -11,8 +11,8 @@ const router = express.Router()
 router.get('/posts', isLoggedIn, async (req, res) => {
     try{
         const allPosts = await getPost()
-        res.status(200).send({
-            posts: `${allPosts}`
+        res.status(200).json({
+            allPosts
         })
     }
     catch(error){
