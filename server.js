@@ -1,6 +1,6 @@
 //import databse
 import 'dotenv/config.js'
-import './config/database.js'
+import './app/config/database.js'
 
 //import middleware
 import  express  from 'express'
@@ -8,11 +8,11 @@ import cors from 'cors'
 import morgan from 'morgan'
 
 //import routers
-import userRouter from './route/user.js'
-import authRouter from './route/auth.js'
-import profileRouter from './route/profile.js'
-import commentRouter from './route/comment.js'
-import postRouter from './route/post.js'
+import userRouter from './app/route/user.js'
+import authRouter from './app/route/auth.js'
+import profileRouter from './app/route/profile.js'
+import commentRouter from './app/route/comment.js'
+import postRouter from './app/route/post.js'
 
 //use middleware
 const app = express()

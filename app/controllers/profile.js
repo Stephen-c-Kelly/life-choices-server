@@ -1,4 +1,4 @@
-import User from '../model/user.js'
+// import User from '../model/user.js'
 import Profile from "../model/profile.js";
 import bcrypt from 'bcrypt'
 
