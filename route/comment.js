@@ -9,7 +9,7 @@ router.get('/comments', isLoggedIn, async (req, res) => {
     try{
         const comments = await getComments()
         res.status(200).send({
-            allComments:`${comments}`
+            comments
         })
     }
     catch(error){
