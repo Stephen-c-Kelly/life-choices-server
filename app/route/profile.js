@@ -3,7 +3,7 @@ import express from 'express'
 
 // import controllers
 import { getProfiles, updateProfile, deleteProfile, getProfileByUsername } from '../controllers/profile.js'
-import User from '../model/user.js'
+// import User from '../model/user.js'
 import isLoggedIn from '../middleware/isLoggedIn.js'
 import { updateUser } from '../controllers/user.js'
 
