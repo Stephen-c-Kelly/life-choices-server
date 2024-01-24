@@ -32,7 +32,7 @@ app.use('/', postRouter)
 
 
 app.use(cors({
-    origin: '' // Allow only your frontend to access
+    origin: '*' // Allow only your frontend to access
   }));
 
 
