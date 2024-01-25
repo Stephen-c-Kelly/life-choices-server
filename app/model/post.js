@@ -12,6 +12,7 @@ const postSchema = mongoose.Schema({
     likes: [{type: String, unique:true}], //store usernames,
     commentId: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}],
     profileId:{type: mongoose.Schema.Types.ObjectId, ref:'User'},
+    username:{type:String}
 },
 {timestamps: true})
 
