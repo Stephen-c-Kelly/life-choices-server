@@ -79,12 +79,12 @@ router.get('/profiles/:username', isLoggedIn, async (req, res) => {
 router.put('/profiles/:id', isLoggedIn, async (req, res) => {
     try{
         const id = req.params.id
-        console.log(req.user.user.profileId)
-        const loggedInUser = req.user.user
+        // console.log(req.user.profileId,"profileid")
+        const loggedInUser = req.user
         if (id === loggedInUser.profileId){
             const updatedProfile = await updateProfile(id, req.body)
             res.status(200).send({
-                updateProfileInfo:`${updatedProfile}`
+                updatedProfile
             })
         }else{
             res.status(500).send({
@@ -104,7 +104,7 @@ router.put('/profiles/:id', isLoggedIn, async (req, res) => {
 router.delete('/profiles/:id', isLoggedIn, async (req, res) => {
     try{
         const id = req.params.id
-        const loggedInUser = req.user.user
+        const loggedInUser = req.user
         console.log( loggedInUser)
         if (id === loggedInUser.profileId){
             const updatedUserData = {
@@ -115,8 +115,8 @@ router.delete('/profiles/:id', isLoggedIn, async (req, res) => {
             console.log(updatedUser)
             const deletedProfile = await deleteProfile(id)
             res.status(200).send({
-                deletedProfileInfo:`${deletedProfile}`,
-                userUpdated: updatedUserData
+                deletedProfile,
+                updatedUserData
             })
         }else{
             res.status(500).send({

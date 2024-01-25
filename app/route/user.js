@@ -4,6 +4,7 @@ import express from 'express'
 // import controllers
 import { getUser, updateUser, deleteUser } from '../controllers/user.js'
 import isLoggedIn from '../middleware/isLoggedIn.js'
+import { deleteProfile } from '../controllers/profile.js'
 
 const router = express.Router()
 
@@ -48,14 +49,14 @@ router.get('/users', isLoggedIn, async (req, res) => {
 router.put('/users/:id', isLoggedIn, async(req, res) =>{
     try{
         const id = req.params.id
-        const loggedInUser = req.user.user
+        const loggedInUser = req.user
 
         // console.log('put id', id)
         // console.log('loggedInUser id', loggedInUser._id)
         if ( id === loggedInUser._id){
             const updateUserInfo = await updateUser(id, req.body)
             res.status(200).send({
-                updateUserInfo:`${updateUserInfo}`
+                updateUserInfo
             })
         }else{
             res.status(500).send({
@@ -76,18 +77,22 @@ router.put('/users/:id', isLoggedIn, async(req, res) =>{
 router.delete('/users/:id', isLoggedIn, async (req, res) => {
     try{
         const id = req.params.id
-        const loggedInUser = req.user.user
-        let token = req.headers.authorization || req.query.token ||req.body.token
+        
+        const loggedInUser = req.user
+        // console.log(loggedInUser,"profileID")
+        let token = req.headers.authorization || req.query.token || req.body.token
         // console.log('token', token)
         // console.log('delete req.user',loggedInUser)
-        // console.log('req.body._id',loggedInUser._id)
+        // console.log('req.body._id',loggedInUser._id, id)
 
         //check if loggedIn user is permitted to delete this user under :id.
         if (id === loggedInUser._id){
+            const deletedProfile = await deleteProfile(loggedInUser.profileId)
             const deletedUser = await deleteUser(id)
             req.headers.authorization = null
             res.status(200).send({
-            deleteduser:`${deletedUser}`,
+            deletedUser,
+            deletedProfile,
             token: `${req.headers.authorization}`
         })
         }else{

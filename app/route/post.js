@@ -41,7 +41,7 @@ router.post('/posts', isLoggedIn, async (req, res) => {
     try{
         const newPost = await createPost(req.body)
         res.status(200).send({
-            post: `${newPost}`
+            newPost
         })
     }
     catch(error){
@@ -57,7 +57,7 @@ router.put('/posts/:id', isLoggedIn, async(req, res) => {
         const id = req.params.id
         const updatedPost = await updatePost(id, req.body)
         res.status(200).send({
-            postUpdated: `${updatedPost}`
+            updatedPost
         })
     }
     catch(error){
@@ -72,7 +72,7 @@ router.delete('/posts/:id', isLoggedIn, async(req, res) => {
         const id = req.params.id
         const deletedPost = await deletePost(id)
         res.status(200).send({
-            postDeleted: `${deletedPost}`
+            deletedPost
         })
     }
     catch(error){
