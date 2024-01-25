@@ -1,4 +1,5 @@
 import { getPosts, createPost, updatePost, deletePost, getSinglePost } from "../controllers/post.js";
+import { updateProfileWithPost } from "../controllers/profile.js";
 import isLoggedIn from "../middleware/isLoggedIn.js";
 
 import express from "express";
@@ -40,6 +41,7 @@ router.get('/posts/:id', isLoggedIn, async (req, res) => {
 router.post('/posts', isLoggedIn, async (req, res) => {
     try{
         const newPost = await createPost(req.body)
+        await updateProfileWithPost(req.body.profileId, newPost._id)
         res.status(200).send({
             newPost
         })
