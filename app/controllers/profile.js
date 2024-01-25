@@ -43,6 +43,17 @@ const updateProfile = (id, updateInfo) => {
     })
 }
 
+const updateProfileWithPost = async (profileId, postId) =>{
+    try {
+        return await Profile.findByIdAndUpdate(
+            profileId,
+            { $push: {postId: postId} },
+            {new: true}
+        )
+    } catch (error) {
+        
+    }
+}
 // No createProile needed as it is created whenever a user is created.
 
 const deleteProfile = (id) => {
@@ -59,5 +70,6 @@ export {
     getProfiles,
     updateProfile,
     deleteProfile,
-    getProfileByUsername
+    getProfileByUsername,
+    updateProfileWithPost
 }
