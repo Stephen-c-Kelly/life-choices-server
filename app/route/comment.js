@@ -23,7 +23,7 @@ router.post('/comments' , isLoggedIn, async(req, res) => {
     try{
         const comment = await createComment(req.body)
         res.status(200).send({
-            newComment: `${comment}`
+            comment
         })
     }
     catch(error){
@@ -39,7 +39,7 @@ router.put('/comments/:id', isLoggedIn, async(req, res) => {
         const id = req.params.id
         const updatedComment = await updateComment(id, req.body)
         res.status(200).send({
-            updateComment: `${updatedComment}`
+            updatedComment
         })
     }
     catch(error){
@@ -54,7 +54,7 @@ router.delete('/comments/:id', isLoggedIn, async (req, res) => {
         const id = req.params.id
         const deletedComment = await deleteComment(id)
         res.status(200).send({
-            deleteComment: `${deletedComment}`
+            deletedComment
         })
     }
     catch(error){
