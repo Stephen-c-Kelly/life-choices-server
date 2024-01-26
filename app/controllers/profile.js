@@ -51,7 +51,7 @@ const updateProfileWithPost = async (profileId, postId) =>{
             {new: true}
         )
     } catch (error) {
-        
+        throw error
     }
 }
 // No createProile needed as it is created whenever a user is created.
