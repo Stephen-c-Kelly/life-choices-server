@@ -11,7 +11,7 @@ const postSchema = mongoose.Schema({
     category:[{type:String}], // Could be related to multiple category in stretchy goal.
     likes: [{type: String}], //store usernames,
     commentId: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}],
-    profileId:{type: mongoose.Schema.Types.ObjectId, ref:'User'},
+    profileId:{type: mongoose.Schema.Types.ObjectId, ref:'Profile'},
     username:{type:String}
 },
 {timestamps: true})
