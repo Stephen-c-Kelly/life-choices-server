@@ -53,7 +53,6 @@ router.post('/posts', isLoggedIn, async (req, res) => {
     }
 })
 
-
 router.put('/posts/:id', isLoggedIn, async(req, res) => {
     try{
         const id = req.params.id
