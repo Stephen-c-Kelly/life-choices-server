@@ -21,17 +21,14 @@ router.get('/comments', isLoggedIn, async (req, res) => {
 
 router.post('/comments' , isLoggedIn, async(req, res) => {
     try{
-        const { comment, username, postId} = req.body
-        // console.log(`req.body is`, req.body)
-        const createdComment = await createComment(comment, username, postId)
-        
+        const comment = await createComment(req.body)
         res.status(200).send({
-            comment: createdComment
+            comment
         })
     }
     catch(error){
         res.status(500).send({
-            createCommentError: `from POST/comments route${error}`
+            createCommentError: `${error}`
         })
     }
 
