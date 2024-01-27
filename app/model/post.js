@@ -14,6 +14,7 @@ const postSchema = mongoose.Schema({
     profileId:{type: mongoose.Schema.Types.ObjectId, ref:'Profile'},
     username:{type:String}
 },
+
 {timestamps: true})
 
 const Post = mongoose.model('Post', postSchema)
