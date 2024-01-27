@@ -5,7 +5,7 @@
 This app will help people make life choices (big and small) by allowing friends to comment and vote on a choice.  
 
 ## Project Description 
-"Live Choices" is MERN stack web application that helps users post choices that other users can vote and discuss.  After a landing page that lists all choices, users can review choices, vote on their preference, and comment on why their vote is the best choice.  
+"Live Choices" is a MERN stack web application that helps users post choices that other users can vote and discuss.  After a landing page that lists all choices, users can review choices, vote on their preference, and comment on why their vote is the best choice.  
 
 Should I move to Canada or Mexico?  Should I order Chinese or Burgers?  Finally we can make the right choice!
 

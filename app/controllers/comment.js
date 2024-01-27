@@ -15,13 +15,13 @@ const getComments = () => {
 const createComment = (comment, postId) => {
     return Comment.create(comment)
     .then (comment => {
-        // Post.findByIdAndUpdate( postId, {$push: {commentId:comment._id}}, {new:true})
-        // .then( updatedpost => {
-        //     return updatedpost
-        // })
-        // .catch(err => {
-        //     throw err
-        // })
+        Post.findByIdAndUpdate( postId, {$push: {commentId:comment._id}}, {new:true})
+        .then( updatedpost => {
+            return updatedpost
+        })
+        .catch(err => {
+            throw err
+        })
         
         return comment
     })
