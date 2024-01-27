@@ -1,5 +1,5 @@
 import { getPosts, createPost, updatePost, deletePost, getSinglePost } from "../controllers/post.js";
-import { updateProfileWithPost } from "../controllers/profile.js";
+import { updateProfileWithPost, removePostFromProfile } from "../controllers/profile.js";
 import isLoggedIn from "../middleware/isLoggedIn.js";
 
 import express from "express";
@@ -68,10 +68,12 @@ router.put('/posts/:id', isLoggedIn, async(req, res) => {
     }
 })
 
-router.delete('/posts/:id', isLoggedIn, async(req, res) => {
+router.delete('/posts/:profileId/:postId', isLoggedIn, async(req, res) => {
     try{
-        const id = req.params.id
-        const deletedPost = await deletePost(id)
+        const profileId = req.params.profileId
+        const postId = req.params.postId
+        const deletedPost = await deletePost(postId)
+        await removePostFromProfile(profileId, postId)
         res.status(200).send({
             deletedPost
         })
@@ -81,9 +83,6 @@ router.delete('/posts/:id', isLoggedIn, async(req, res) => {
             deletePostError: `${error}`
         })
     }
-
-
 })
-
 
 export default router
