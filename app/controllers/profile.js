@@ -54,6 +54,18 @@ const updateProfileWithPost = async (profileId, postId) =>{
         throw error
     }
 }
+
+const removePostFromProfile = async(profileId, postId) =>{
+    try {
+        return await Profile.findByIdAndUpdate(
+            profileId, 
+            {$pull: {postId: postId}},
+            {new: true}
+        )
+    } catch (error) {
+        throw error
+    }
+}
 // No createProile needed as it is created whenever a user is created.
 
 const deleteProfile = (id) => {
@@ -71,5 +83,6 @@ export {
     updateProfile,
     deleteProfile,
     getProfileByUsername,
-    updateProfileWithPost
+    updateProfileWithPost,
+    removePostFromProfile
 }
