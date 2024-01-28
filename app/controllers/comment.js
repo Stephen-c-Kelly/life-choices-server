@@ -66,9 +66,14 @@ const deleteComment = ( commentId ) => {
 
 }
 
+const deleteMultiComments = (commentId) => {
+    return Comment.findByIdAndDelete(commentId)
+}
+
 export {
     getComments,
     createComment,
     deleteComment,
-    updateComment
+    updateComment,
+    deleteMultiComments
 }

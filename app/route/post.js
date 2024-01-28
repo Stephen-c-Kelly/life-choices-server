@@ -1,3 +1,4 @@
+import { deleteMultiComments, getComments } from "../controllers/comment.js";
 import { getPosts, createPost, updatePost, deletePost, getSinglePost } from "../controllers/post.js";
 import { updateProfileWithPost, removePostFromProfile } from "../controllers/profile.js";
 import isLoggedIn from "../middleware/isLoggedIn.js";
@@ -72,6 +73,13 @@ router.delete('/posts/:profileId/:postId', isLoggedIn, async(req, res) => {
     try{
         const profileId = req.params.profileId
         const postId = req.params.postId
+        const post = await getSinglePost(postId)
+        const commentIds = post.commentId
+        commentIds.forEach(async commentId => {
+            const deletedComments = await deleteMultiComments(commentId)
+            // console.log(deletedComments,'deletedComments when a post is deleted')
+        })
+        
         const deletedPost = await deletePost(postId)
         await removePostFromProfile(profileId, postId)
         res.status(200).send({
