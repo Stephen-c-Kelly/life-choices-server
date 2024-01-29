@@ -1,3 +1,5 @@
+-- ARCHIVED: PLEASE SEE README FILE --
+
 # LifeChoices: a social media decision-making app
 This app will help people make life choices (big and small) by allowing friends to comment and vote on a choice.  
 
@@ -19,6 +21,7 @@ Backend Technologies used:
 
 FrontEnd Technologies used
 -- Node.js
+-- React
 -- Netlify
 -- Chat GPT
 

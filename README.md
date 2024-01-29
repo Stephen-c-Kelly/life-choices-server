@@ -22,17 +22,11 @@ Backend Technologies used:
 -- Heroku
 -- Chat GPT
 
-FrontEnd Technologies used
--- Node.js
--- Netlify
--- Chat GPT
-
 ## MVP User Stories & Stretch Goals
 https://trello.com/invite/b/dHQewgPW/ATTI54bf44fafbac57b671c60e1f4ff943d5C97E4387/lifechoices
 
 #### Wireframes
 <img width="965" alt="Screen Shot 2024-01-22 at 9 31 46 AM" src="https://github.com/Stephen-c-Kelly/life-choices-server/assets/149907841/190ea6be-70f3-4658-bf0c-8eb5dedabc15">
-
 
 ## Technical Architecture
 ERD Designs: [Life_choices_-_Model](https://github.com/Stephen-c-Kelly/life-choices-server/assets/149907841/3a393596-8670-485e-8355-e9b3f9af089e)
@@ -58,8 +52,6 @@ Front-end Github Repo: https://github.com/Stephen-c-Kelly/life-choices-server
 Google Sheets Timeline - https://docs.google.com/spreadsheets/d/1-btQyDvON3lAm1PMQ2jyeyJ_Nfw90DxPWkgxHxHdyro/edit?usp=sharing
 
 #### Resources
-- Github Management 
 -- https://git.generalassemb.ly/seb-beherenow/git-teams/blob/master/cheatsheet.md 
 -- https://www.youtube.com/watch?v=n1AfM6fuc9M&list=PLY6oTPmKnKbZ6P8tdFlrRAOTk6NUNjMMx&index=7&t=336s&ab_channel=WebDevelopmentwithAlexMerced
 - Mongoose: https://mongoosejs.com/docs/guide.html
-
